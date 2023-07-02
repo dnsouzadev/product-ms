@@ -21,6 +21,6 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "isAvailable")
-    private boolean isAvailable;
+    @Column(name = "available")
+    private boolean available;
 }
