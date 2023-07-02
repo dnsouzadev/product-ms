@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,4 +26,19 @@ public class ProductServiceImpl implements ProductService {
         return Optional.of(response);
 
     }
+
+    @Override
+    public List<ProductDTO> getAll() {
+        ModelMapper mapper = new ModelMapper();
+        List<Product> products = repository.findAll();
+        List<ProductDTO> responses = new ArrayList<>();
+
+        products.forEach(product -> {
+            ProductDTO response = mapper.map(product, ProductDTO.class);
+            responses.add(response);
+        });
+
+        return responses;
+    }
+
 }
